@@ -34,7 +34,6 @@ app.get("/", function (request, response) {
   response.send("🙋‍♂️, 🌏 🎊✨🤩");
 });
 app.use("/auth", authRoute);
-app.use("/users", usersRouter);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listenting on port ${port}...`));
