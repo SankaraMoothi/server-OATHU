@@ -25,7 +25,7 @@ app.use(passport.session());
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://socia-oauth.netlify.app",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
