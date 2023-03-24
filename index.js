@@ -6,7 +6,7 @@ const authRoute = require("./routes/auth");
 const cookieSession = require("cookie-session");
 const passportStrategy = require("./passport");
 const app = express();
-const usersRouter = require("./routes/users");
+
 app.use(express.json());
 app.set("trust proxy", 1);
 app.use(
