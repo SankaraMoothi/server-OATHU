@@ -60,7 +60,7 @@ passport.use(
       // } catch (err) {
       //   console.log(err);
       // }
-      // callback(null, profile);
+      callback(null, profile);
     }
   )
 );
@@ -92,7 +92,7 @@ passport.use(
       //         });
       //     }
       //   });
-      // callback(null, profile);
+      callback(null, profile);
     }
   )
 );
