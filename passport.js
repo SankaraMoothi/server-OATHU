@@ -40,23 +40,27 @@ passport.use(
     async (accessToken, refreshToken, profile, done) => {
       const db = await connectDB();
 
-      db.collection("register")
-        .findOne({ googleId: profile.id })
-        .then((currentUser) => {
-          if (currentUser) {
-            done(null, currentUser);
-          } else {
-            db.collection("register")
-              .insertOne({
-                name: profile.displayName,
-                googleId: profile.id,
-                thumbnail: profile.photos[0].value,
-              })
-              .then((newUser) => {
-                done(null, newUser);
-              });
-          }
-        });
+      try {
+        db.collection("register")
+          .findOne({ googleId: profile.id })
+          .then((currentUser) => {
+            if (currentUser) {
+              done(null, currentUser);
+            } else {
+              db.collection("register")
+                .insertOne({
+                  name: profile.displayName,
+                  googleId: profile.id,
+                  thumbnail: profile.photos[0].value,
+                })
+                .then((newUser) => {
+                  done(null, newUser);
+                });
+            }
+          });
+      } catch (err) {
+        console.log(err);
+      }
       // callback(null, profile);
     }
   )
