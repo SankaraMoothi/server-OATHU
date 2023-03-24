@@ -41,7 +41,6 @@ router.post("/login", async (req, res, next) => {
       res.status(403).json("User not found");
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json("Something went wrong");
   }
 });
@@ -70,7 +69,6 @@ router.post("/register", async (req, res, next) => {
       res.status(403).json("User already exist");
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "something went wrong" });
   }
 });
@@ -85,7 +83,6 @@ router.get("/validUser", authenticate, async (req, res) => {
 
     res.json(user);
   } catch (error) {
-    console.log(error);
     res.status(401).json({ message: "Something went wrong on validate user" });
   }
 });
@@ -124,16 +121,13 @@ router.post("/sendpasswordlink", async (req, res) => {
 
       transporter.sendMail(mailOption, (err, info) => {
         if (err) {
-          console.log(err);
           res.status(401).json("Enter a valid email");
         } else {
-          console.log("Email Send", info.response);
           res.status(200).json({ message: "email sent successfully" });
         }
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(401).json(error);
   }
 });
@@ -149,7 +143,6 @@ router.get("/resetpassword/:id/:token", async (req, res) => {
 
     const verifyToken = jwt.verify(token, process.env.JWT_SECRET);
 
-    console.log(verifyToken);
     if (validUser && verifyToken.email) {
       res.status(200).json({ message: "valid user" });
     } else {

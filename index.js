@@ -30,7 +30,9 @@ app.use(
     credentials: true,
   })
 );
-
+app.get("/", function (request, response) {
+  response.send("🙋‍♂️, 🌏 🎊✨🤩");
+});
 app.use("/auth", authRoute);
 app.use("/users", usersRouter);
 
