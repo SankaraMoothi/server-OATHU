@@ -139,7 +139,7 @@ router.post("/sendpasswordlink", async (req, res) => {
         from: process.env.email,
         to: email,
         subject: "Password reset link",
-        text: `Valid only upto 2 minutes :  http://localhost:3000/reset-password/${user._id}/${token}`,
+        text: `Valid only upto 2 minutes :  https://socia-oauth.netlify.app/reset-password/${user._id}/${token}`,
       };
 
       transporter.sendMail(mailOption, (err, info) => {
