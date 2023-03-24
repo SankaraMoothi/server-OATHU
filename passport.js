@@ -37,26 +37,27 @@ passport.use(
       callbackURL: "/auth/google/callback",
       scope: ["profile"],
     },
-    async (accessToken, refreshToken, profile, done) => {
-      const db = await connectDB();
+    async (accessToken, refreshToken, profile, callback) => {
+      // const db = await connectDB();
 
-      db.collection("register")
-        .findOne({ googleId: profile.id })
-        .then((currentUser) => {
-          if (currentUser) {
-            done(null, currentUser);
-          } else {
-            db.collection("register")
-              .insertOne({
-                name: profile.displayName,
-                googleId: profile.id,
-                thumbnail: profile.photos[0].value,
-              })
-              .then((newUser) => {
-                done(null, newUser);
-              });
-          }
-        });
+      // db.collection("register")
+      //   .findOne({ googleId: profile.id })
+      //   .then((currentUser) => {
+      //     if (currentUser) {
+      //       done(null, currentUser);
+      //     } else {
+      //       db.collection("register")
+      //         .insertOne({
+      //           name: profile.displayName,
+      //           googleId: profile.id,
+      //           thumbnail: profile.photos[0].value,
+      //         })
+      //         .then((newUser) => {
+      //           done(null, newUser);
+      //         });
+      //     }
+      //   });
+      callback(null, profile);
     }
   )
 );
@@ -69,26 +70,27 @@ passport.use(
       callbackURL: "/auth/github/callback",
       scope: ["profile"],
     },
-    async (accessToken, refreshToken, profile, done) => {
-      const db = await connectDB();
+    async (accessToken, refreshToken, profile, callback) => {
+      // const db = await connectDB();
 
-      db.collection("register")
-        .findOne({ githubId: profile.id })
-        .then((currentUser) => {
-          if (currentUser) {
-            done(null, currentUser);
-          } else {
-            db.collection("register")
-              .insertOne({
-                name: profile.displayName,
-                githubId: profile.id,
-                thumbnail: profile.photos[0].value,
-              })
-              .then((newUser) => {
-                done(null, newUser);
-              });
-          }
-        });
+      // db.collection("register")
+      //   .findOne({ githubId: profile.id })
+      //   .then((currentUser) => {
+      //     if (currentUser) {
+      //       done(null, currentUser);
+      //     } else {
+      //       db.collection("register")
+      //         .insertOne({
+      //           name: profile.displayName,
+      //           githubId: profile.id,
+      //           thumbnail: profile.photos[0].value,
+      //         })
+      //         .then((newUser) => {
+      //           done(null, newUser);
+      //         });
+      //     }
+      //   });
+      callback(null, profile);
     }
   )
 );
@@ -100,26 +102,27 @@ passport.use(
       callbackURL: "/auth/facebook/callback",
       scope: ["profile"],
     },
-    async (accessToken, refreshToken, profile, done) => {
-      const db = await connectDB();
+    async (accessToken, refreshToken, profile, callback) => {
+      // const db = await connectDB();
 
-      db.collection("register")
-        .findOne({ faceBookId: profile.id })
-        .then((currentUser) => {
-          if (currentUser) {
-            done(null, currentUser);
-          } else {
-            db.collection("register")
-              .insertOne({
-                name: profile.displayName,
-                faceBookId: profile.id,
-                thumbnail: profile.photos[0].value,
-              })
-              .then((newUser) => {
-                done(null, newUser);
-              });
-          }
-        });
+      // db.collection("register")
+      //   .findOne({ faceBookId: profile.id })
+      //   .then((currentUser) => {
+      //     if (currentUser) {
+      //       done(null, currentUser);
+      //     } else {
+      //       db.collection("register")
+      //         .insertOne({
+      //           name: profile.displayName,
+      //           faceBookId: profile.id,
+      //           thumbnail: profile.photos[0].value,
+      //         })
+      //         .then((newUser) => {
+      //           done(null, newUser);
+      //         });
+      //     }
+      //   });
+      callback(null, profile);
     }
   )
 );
